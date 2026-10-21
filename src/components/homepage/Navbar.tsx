@@ -1,9 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { GrMenu } from "react-icons/gr";
 import NavbarDate from "../shared/NavbarDate";
+import AuthenticationButton from "../button/AuthenticationButton";
+import MobileCategoryMenu from "../MobileCategoryMenu";
 
-const Navbar = () => {
+interface ICategory {
+  id: string;
+  slug: string;
+  nameBn: string;
+  icon: string;
+}
+
+const Navbar = ({ categories }: { categories: ICategory[] }) => {
   return (
     <nav className="sticky top-0 z-50 border-b border-base-200 bg-base-100 shadow-sm">
       <div className="mx-auto max-w-7xl px-2">
@@ -11,13 +19,7 @@ const Navbar = () => {
           {/* Left: Menu + Logo + Title */}
           <div className="flex min-w-0 items-center gap-2 sm:gap-2">
             {/* Menu button: Mobile and Tablet */}
-            <button
-              type="button"
-              className="btn btn-ghost btn-square shrink-0 lg:hidden"
-              aria-label="Open menu"
-            >
-              <GrMenu size={22} />
-            </button>
+            <MobileCategoryMenu categories={categories} />
 
             {/* Logo + Title + Date */}
             <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
@@ -30,9 +32,11 @@ const Navbar = () => {
               />
             </Link>
             <div className="min-w-0">
-              <h1 className="text-lg font-bold leading-tight sm:text-xl">
-                বাজার দর
-              </h1>
+              <Link href="/">
+                <h1 className="text-lg font-bold leading-tight text-base-content sm:text-xl">
+                  বাজার দর
+                </h1>
+              </Link>
               <p className="mt-1 text-[10px] text-base-content/70 sm:text-xs">
                 <NavbarDate />
               </p>
@@ -40,21 +44,7 @@ const Navbar = () => {
           </div>
 
           {/* Right: Authentication */}
-          <div className="flex shrink-0 items-center gap-2 sm:gap-4">
-            <Link
-              href="/signin"
-              className="whitespace-nowrap text-xs font-semibold sm:text-sm md:px-3 md:py-2"
-            >
-              সাইন ইন
-            </Link>
-
-            <Link
-              href="/signup"
-              className="whitespace-nowrap rounded-lg bg-[#05893E] px-3 py-2 text-xs font-semibold text-white sm:px-5 sm:py-2.5 sm:text-sm"
-            >
-              সাইন আপ
-            </Link>
-          </div>
+          <AuthenticationButton />
         </div>
       </div>
     </nav>
