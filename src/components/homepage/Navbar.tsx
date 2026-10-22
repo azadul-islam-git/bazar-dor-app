@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import NavbarDate from "../shared/NavbarDate";
 import AuthenticationButton from "../button/AuthenticationButton";
-import MobileCategoryMenu from "../MobileCategoryMenu";
+import MobileCategoryMenu from "../shared/MobileCategoryMenu";
 
 interface ICategory {
   id: string;
