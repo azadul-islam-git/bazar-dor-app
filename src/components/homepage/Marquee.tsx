@@ -33,7 +33,12 @@ const Marquee = async () => {
 
   return (
     <div className="w-full overflow-hidden border-y border-gray-200 bg-white py-2">
-      <MarqueeText direction="right" duration={30} pauseOnHover>
+      <MarqueeText
+        direction="right"
+        duration={30}
+        pauseOnHover={true}
+        playOnlyInView={false}
+      >
         {data.map((p) => {
           const { dir, pct } = p.change;
           const color =
