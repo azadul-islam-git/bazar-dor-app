@@ -35,7 +35,7 @@ const Marquee = async () => {
     <div className="w-full overflow-hidden border-y border-gray-200 bg-white py-2">
       <MarqueeText
         direction="right"
-        duration={30}
+        duration={20}
         pauseOnHover={true}
         playOnlyInView={false}
       >

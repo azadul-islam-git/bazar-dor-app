@@ -29,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Marquee />
         <main className="flex-1 bg-[#F1F6F1]">{children}</main>
         <Footer />
-        <Toaster />
+        <Toaster position="top-center" />
       </body>
     </html>
   );

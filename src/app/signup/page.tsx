@@ -1,8 +1,47 @@
+"use client";
+
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 import { FaArrowLeft, FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 const SignUpPage = () => {
+  const handleSignUp = async (e: React.SubmitEvent<HTMLElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const user = Object.fromEntries(formData.entries()) as {
+      name: string;
+      email: string;
+      password: string;
+      confirmPassword: string;
+    };
+
+    // Check whether passwords match
+    if (user.password !== user.confirmPassword) {
+      toast.error("Passwords do not match!");
+      return;
+    }
+
+    // Create the account only if passwords match
+    const { data, error } = await authClient.signUp.email({
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      callbackURL: "/",
+    });
+
+    if (data) {
+      toast.success("Account created successfully!");
+      redirect("/");
+    }
+    if (error) {
+      toast.error(error.message || "Signup failed. Please try again.");
+    }
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center px-4 py-8 sm:py-10">
       {/* Heading */}
@@ -17,7 +56,7 @@ const SignUpPage = () => {
 
       {/* Form Card */}
       <div className="w-full max-w-103.5 rounded-2xl border border-[#DFE7DF] bg-[#FAFCFA] p-5 sm:p-6">
-        <form className="space-y-4">
+        <form onSubmit={handleSignUp} className="space-y-4">
           {/* Name */}
           <div>
             <label
