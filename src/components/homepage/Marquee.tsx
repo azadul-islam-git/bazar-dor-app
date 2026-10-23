@@ -16,7 +16,7 @@ interface IHeadlines {
   };
 }
 
-const UNIT_BN: Record<string, string> = {
+const unitBangla: Record<string, string> = {
   kg: "কেজি",
   litre: "লিটার",
   dozen: "ডজন",
@@ -54,7 +54,7 @@ const Marquee = async () => {
               <span className="text-lg">{p.image}</span>
               <span className="font-medium">{p.nameBn}</span>
               <span className="text-gray-600">
-                {toBn(p.today)} টাকা/{UNIT_BN[p.unit] ?? p.unit}
+                {toBn(p.today)} টাকা/{unitBangla[p.unit] ?? p.unit}
               </span>
               <span
                 className={`inline-flex items-center font-semibold ${color}`}

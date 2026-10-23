@@ -24,10 +24,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme="light"
       className={`${hindSiliguri.className}  h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-screen flex flex-col">
         <Header />
         <Marquee />
-        <main>{children}</main>
+        <main className="flex-1 bg-[#F1F6F1]">{children}</main>
         <Footer />
         <Toaster />
       </body>

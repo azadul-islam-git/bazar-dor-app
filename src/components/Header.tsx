@@ -18,10 +18,10 @@ const Header = async () => {
   const categories: ICategory[] = await res.json();
 
   return (
-    <>
+    <header className="sticky top-0 z-50">
       <Navbar categories={categories} />
       <NavLinks categories={categories} />
-    </>
+    </header>
   );
 };
 

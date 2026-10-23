@@ -3,6 +3,7 @@ import Link from "next/link";
 import NavbarDate from "../shared/NavbarDate";
 import AuthenticationButton from "../button/AuthenticationButton";
 import MobileCategoryMenu from "../shared/MobileCategoryMenu";
+import navLogo from "@/assets/logo-icon.png";
 
 interface ICategory {
   id: string;
@@ -13,7 +14,7 @@ interface ICategory {
 
 const Navbar = ({ categories }: { categories: ICategory[] }) => {
   return (
-    <nav className="sticky top-0 z-50 border-b border-base-200 bg-base-100 shadow-sm">
+    <nav className="border-b border-base-200 bg-base-100 shadow-sm">
       <div className="mx-auto max-w-7xl px-2">
         <div className="flex min-h-20 items-center justify-between gap-3 py-3">
           {/* Left: Menu + Logo + Title */}
@@ -24,7 +25,7 @@ const Navbar = ({ categories }: { categories: ICategory[] }) => {
             {/* Logo + Title + Date */}
             <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
               <Image
-                src="/logo-icon.png"
+                src={navLogo}
                 alt="Bazar-Dor Logo"
                 width={24}
                 height={24}

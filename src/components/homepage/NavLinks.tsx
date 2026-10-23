@@ -9,7 +9,7 @@ interface ICategory {
 
 const NavLinks = async ({ categories }: { categories: ICategory[] }) => {
   return (
-    <nav className="sticky top-0 z-50 border-b border-base-200 bg-base-100 shadow-sm hidden lg:block">
+    <nav className="border-b border-base-200 bg-base-100 shadow-sm hidden lg:block">
       <div className="mx-auto max-w-7xl overflow-x-auto px-3 sm:px-5 lg:px-8">
         <ul className="flex min-w-max items-center justify-start gap-5 py-3 sm:gap-7 lg:gap-9">
           {categories.map((category) => (
