@@ -8,7 +8,10 @@ const AllProducts = async () => {
   const data: IProduct[] = await res.json();
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-8">
+    <section
+      id="all-products"
+      className="mx-auto max-w-7xl px-4 py-8 scroll-mt-32"
+    >
       <h2 className="mb-4 flex items-center gap-2 text-xl font-semibold text-gray-900">
         <IoGrid className="text-gray-700" />
         সকল পণ্য

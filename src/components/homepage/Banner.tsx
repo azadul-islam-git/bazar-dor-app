@@ -1,12 +1,13 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import bannerImg from "@/assets/bazar-hero.png";
 import NavbarDate from "../shared/NavbarDate";
 
 const Banner = () => {
   return (
-    <section className="px-4 py-2 sm:px-6 lg:px-8">
+    <section className="px-4 py-2 sm:px-6 lg:px-8 mt-6">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-6 overflow-hidden rounded-[28px] border border-[#DFE7DF] bg-[#FAFCFA] px-5 py-7 sm:px-8 md:grid-cols-[1.6fr_0.8fr] md:px-10 md:py-8">
         {/* Left Content */}
         <div className="order-2 md:order-1">
@@ -20,13 +21,19 @@ const Banner = () => {
             চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক
             বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
           </p>
-          <Link
-            href="/products"
+          <button
+            type="button"
+            onClick={() => {
+              document.getElementById("all-products")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }}
             className="btn mt-7 min-h-12 rounded-xl border-none bg-[#07883F] px-6 text-sm font-semibold text-white shadow-md hover:bg-[#066F34]"
           >
             সব পণ্য দেখুন
             <FaArrowRight className="ml-1" />
-          </Link>
+          </button>
         </div>
 
         {/* Right Illustration */}
