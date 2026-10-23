@@ -1,6 +1,6 @@
 # 🛍️ Bazar Dor
 
-**Live Website:** [Add your live website URL here]
+**Live Website:** https://bazar-dor-app-weld.vercel.app/
 
 Bazar Dor is a modern online product price browsing platform built to help users explore products and view their prices with ease. It features a clean, responsive interface and user authentication, making it simple for users to create an account and access product pricing details.
 
