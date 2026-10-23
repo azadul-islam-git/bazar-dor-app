@@ -21,7 +21,7 @@ const SignUpPage = () => {
 
     // Check whether passwords match
     if (user.password !== user.confirmPassword) {
-      toast.error("Passwords do not match!");
+      toast.error("পাসওয়ার্ড দুটি মিলছে না!");
       return;
     }
 
@@ -34,12 +34,26 @@ const SignUpPage = () => {
     });
 
     if (data) {
-      toast.success("Account created successfully!");
+      toast.success("অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!");
       redirect("/");
     }
     if (error) {
-      toast.error(error.message || "Signup failed. Please try again.");
+      toast.error(
+        error.message || "সাইনআপ ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।",
+      );
     }
+  };
+
+  const handleGoogleSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+
+  const handleGithubSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "github",
+    });
   };
 
   return (
@@ -150,6 +164,7 @@ const SignUpPage = () => {
         {/* Social Buttons */}
         <div className="grid grid-cols-2 gap-2">
           <button
+            onClick={handleGoogleSignIn}
             type="button"
             className="btn h-auto min-h-9 gap-1 rounded-lg border-[#DFE7DF] bg-transparent px-2 text-xs text-[#303A33] shadow-none hover:bg-[#F1F6F1] sm:text-sm"
           >
@@ -158,6 +173,7 @@ const SignUpPage = () => {
           </button>
 
           <button
+            onClick={handleGithubSignIn}
             type="button"
             className="btn h-auto min-h-9 gap-1 rounded-lg border-[#DFE7DF] bg-transparent px-2 text-xs text-[#303A33] shadow-none hover:bg-[#F1F6F1] sm:text-sm"
           >

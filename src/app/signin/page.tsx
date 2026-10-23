@@ -1,8 +1,50 @@
+"use client";
+
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 import { FaArrowLeft, FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 const SignInPage = () => {
+  const handleSignIn = async (e: React.SubmitEvent<HTMLElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const user = Object.fromEntries(formData.entries()) as {
+      email: string;
+      password: string;
+    };
+
+    const { data, error } = await authClient.signIn.email({
+      ...user,
+      callbackURL: "/",
+    });
+
+    if (data) {
+      toast.success("সফলভাবে সাইন ইন হয়েছে");
+      redirect("/");
+    }
+    if (error) {
+      toast.error(
+        error.message || "সাইন-ইন ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।",
+      );
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+
+  const handleGithubSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "github",
+    });
+  };
+
   return (
     <main className="flex flex-col items-center px-4 py-8 sm:py-10">
       {/* Heading */}
@@ -17,7 +59,7 @@ const SignInPage = () => {
 
       {/* Form Card */}
       <div className="w-full max-w-103.5 rounded-2xl border border-[#DFE7DF] bg-[#FAFCFA] p-5 sm:p-6">
-        <form className="space-y-4">
+        <form onSubmit={handleSignIn} className="space-y-4">
           {/* Email */}
           <div>
             <label
@@ -71,6 +113,7 @@ const SignInPage = () => {
         {/* Social Buttons */}
         <div className="grid grid-cols-2 gap-2">
           <button
+            onClick={handleGoogleSignIn}
             type="button"
             className="btn h-auto min-h-9 gap-1 rounded-lg border-[#DFE7DF] bg-transparent px-2 text-xs text-[#303A33] shadow-none hover:bg-[#F1F6F1] sm:text-sm"
           >
@@ -80,6 +123,7 @@ const SignInPage = () => {
 
           <button
             type="button"
+            onClick={handleGithubSignIn}
             className="btn h-auto min-h-9 gap-1 rounded-lg border-[#DFE7DF] bg-transparent px-2 text-xs text-[#303A33] shadow-none hover:bg-[#F1F6F1] sm:text-sm"
           >
             <FaGithub className="shrink-0 text-base" />
